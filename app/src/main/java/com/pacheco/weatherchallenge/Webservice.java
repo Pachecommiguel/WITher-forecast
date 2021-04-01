@@ -2,13 +2,13 @@ package com.pacheco.weatherchallenge;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface Webservice {
 
-    @GET("data/2.5/weather?q={cityName}&appid={apiKey}")
+    @GET("/data/2.5/weather")
     Call<Response> getWeatherByCityName(
-            @Path("cityName") String cityName,
-            @Path("apiKey") String apiKey
+            @Query("q") String cityName,
+            @Query("appid") String apiKey
     );
 }
