@@ -1,6 +1,11 @@
-package com.pacheco.weatherchallenge;
+package com.pacheco.weatherchallenge.retrofit;
+
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
+
+import com.pacheco.weatherchallenge.utils.Constants;
+import com.pacheco.weatherchallenge.response.Response;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,6 +29,7 @@ public class Repository implements Callback<Response> {
 
     @Override
     public void onFailure(Call<Response> call, Throwable t) {
+        Log.e(getClass().getSimpleName(), "onFailure: " + t.getMessage());
     }
 
     public MutableLiveData<Response> getResponse() {

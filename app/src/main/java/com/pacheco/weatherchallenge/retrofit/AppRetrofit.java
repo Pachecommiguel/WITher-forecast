@@ -1,4 +1,6 @@
-package com.pacheco.weatherchallenge;
+package com.pacheco.weatherchallenge.retrofit;
+
+import com.pacheco.weatherchallenge.utils.Constants;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

@@ -1,4 +1,6 @@
-package com.pacheco.weatherchallenge;
+package com.pacheco.weatherchallenge.retrofit;
+
+import com.pacheco.weatherchallenge.response.Response;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

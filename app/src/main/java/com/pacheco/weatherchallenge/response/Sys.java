@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge;
+package com.pacheco.weatherchallenge.response;
 
 public class Sys {
 

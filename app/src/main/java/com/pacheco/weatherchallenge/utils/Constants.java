@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge;
+package com.pacheco.weatherchallenge.utils;
 
 public abstract class Constants {
 
