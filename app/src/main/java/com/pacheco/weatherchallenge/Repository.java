@@ -8,9 +8,8 @@ import retrofit2.Callback;
 public class Repository implements Callback<Response> {
 
     private static final String API_KEY = "433f0a05409361125a827f77654820e4";
-
     private final Webservice webservice;
-    private MutableLiveData<Response> response = new MutableLiveData<>();
+    private final MutableLiveData<Response> response = new MutableLiveData<>();
 
     public Repository() {
         webservice = AppRetrofit.getInstance().create(Webservice.class);
