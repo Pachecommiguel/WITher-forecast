@@ -9,6 +9,6 @@ public interface Webservice {
     @GET("data/2.5/weather?q={cityName}&appid={apiKey}")
     Call<Response> getWeatherByCityName(
             @Path("cityName") String cityName,
-            @Path("apiKey") Integer apiKey
+            @Path("apiKey") String apiKey
     );
 }
