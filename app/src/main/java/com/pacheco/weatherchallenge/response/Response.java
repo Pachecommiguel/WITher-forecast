@@ -1,5 +1,7 @@
 package com.pacheco.weatherchallenge.response;
 
+import androidx.annotation.Nullable;
+
 import java.util.List;
 
 public class Response {
@@ -68,5 +70,14 @@ public class Response {
 
     public Integer getCod() {
         return cod;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj instanceof Response) {
+            return this.id.equals(((Response) obj).id);
+        }
+
+        return super.equals(obj);
     }
 }

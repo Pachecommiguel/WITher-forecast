@@ -16,18 +16,32 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class Repository implements Callback<Response> {
+public class Repository {
 
     private static Repository instance;
     private final Webservice webservice;
-    private MutableLiveData<List<Response>> responseLiveList = new MutableLiveData<>();
+    private volatile MutableLiveData<List<Response>> responseLiveList = new MutableLiveData<>();
+
+    private Callback<Response> callback = new Callback<Response>() {
+        @Override
+        public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+            if (response.isSuccessful()) {
+                handleResponse(response.body());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<Response> call, Throwable t) {
+            Log.e(getClass().getSimpleName(), "onFailure: " + t.getMessage());
+        }
+    };
 
     private Repository() {
         webservice = AppRetrofit.getInstance().create(Webservice.class);
         responseLiveList.setValue(new ArrayList<>());
 
         for (Cities city : Cities.values()) {
-            webservice.getWeatherByCityId(city.getId(), Constants.API_KEY).enqueue(this);
+            webservice.getWeatherByCityId(city.getId(), Constants.API_KEY).enqueue(callback);
         }
     }
 
@@ -49,32 +63,18 @@ public class Repository implements Callback<Response> {
     }
 
     public void refreshResponseById(Integer id) {
-        webservice.getWeatherByCityId(String.valueOf(id), Constants.API_KEY).enqueue(this);
+        webservice.getWeatherByCityId(String.valueOf(id), Constants.API_KEY).enqueue(callback);
     }
 
-    @Override
-    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-        if (response.isSuccessful()) {
-            List<Response> responseList = new ArrayList<>(responseLiveList.getValue());
+    private void handleResponse(Response response) {
+        List<Response> responseList = new ArrayList<>(responseLiveList.getValue());
 
-            //TODO refactor this
-            if (responseList.size() == 10) {
-                for (int i = 0; i < responseList.size(); i++) {
-                    if (responseList.get(i).getId().intValue() == response.body().getId().intValue()) {
-                        responseList.set(i, response.body());
-                    }
-                }
-            } else {
-                responseList.add(response.body());
-            }
-
-            responseLiveList.setValue(responseList);
-            Log.e("TAG", "onResponse: " + response.body().getId() + " " + responseList.size() + " " + responseLiveList.getValue().size() + " " + response.body().getMain().getTemp());
+        if (responseList.contains(response)) {
+            responseList.set(responseList.indexOf(response), response);
+        } else {
+            responseList.add(response);
         }
-    }
 
-    @Override
-    public void onFailure(Call<Response> call, Throwable t) {
-        Log.e(getClass().getSimpleName(), "onFailure: " + t.getMessage());
+        responseLiveList.setValue(responseList);
     }
 }
