@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         MainViewModel viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication())
                 .create(MainViewModel.class);
-        viewModel.getResponse().observe(this, response -> {
-            adapter.submitList(Collections.singletonList(response));
-        });
+        viewModel.getResponse().observe(this, adapter::submitList);
     }
 }
