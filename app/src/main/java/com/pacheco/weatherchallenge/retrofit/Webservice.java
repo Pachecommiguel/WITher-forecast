@@ -10,7 +10,7 @@ public interface Webservice {
 
     @GET("/data/2.5/weather")
     Call<Response> getWeatherByCityName(
-            @Query("q") String cityName,
+            @Query("id") String cityId,
             @Query("appid") String apiKey
     );
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.pacheco.weatherchallenge.response.Response;
+import com.pacheco.weatherchallenge.utils.Cities;
 import com.pacheco.weatherchallenge.utils.Constants;
 
 import java.util.ArrayList;
@@ -22,9 +23,10 @@ public class Repository implements Callback<Response> {
 
     public Repository() {
         webservice = AppRetrofit.getInstance().create(Webservice.class);
-        webservice.getWeatherByCityName("Lisbon", Constants.API_KEY).enqueue(this);
-        webservice.getWeatherByCityName("London", Constants.API_KEY).enqueue(this);
-        webservice.getWeatherByCityName("London", Constants.API_KEY).enqueue(this);
+
+        for (Cities city : Cities.values()) {
+            webservice.getWeatherByCityName(city.getId(), Constants.API_KEY).enqueue(this);
+        }
     }
 
     @Override
