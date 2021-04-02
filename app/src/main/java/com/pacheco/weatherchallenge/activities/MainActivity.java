@@ -11,8 +11,6 @@ import com.pacheco.weatherchallenge.recycler.DiffCallback;
 import com.pacheco.weatherchallenge.recycler.RecyclerListAdapter;
 import com.pacheco.weatherchallenge.viewmodels.MainViewModel;
 
-import java.util.Collections;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -29,6 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
         MainViewModel viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication())
                 .create(MainViewModel.class);
-        viewModel.getResponse().observe(this, adapter::submitList);
+        viewModel.getResponseList().observe(this, adapter::submitList);
     }
 }

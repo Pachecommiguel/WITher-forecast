@@ -18,14 +18,14 @@ import retrofit2.Callback;
 public class Repository implements Callback<Response> {
 
     private final Webservice webservice;
-    private final MutableLiveData<List<Response>> response = new MutableLiveData<>();
+    private final MutableLiveData<List<Response>> responseLiveList = new MutableLiveData<>();
     private volatile List<Response> responseList = new ArrayList<>();
 
     public Repository() {
         webservice = AppRetrofit.getInstance().create(Webservice.class);
 
         for (Cities city : Cities.values()) {
-            webservice.getWeatherByCityName(city.getId(), Constants.API_KEY).enqueue(this);
+            webservice.getWeatherByCityId(city.getId(), Constants.API_KEY).enqueue(this);
         }
     }
 
@@ -33,7 +33,7 @@ public class Repository implements Callback<Response> {
     public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
         if (response.isSuccessful()) {
             responseList.add(response.body());
-            this.response.setValue(responseList);
+            responseLiveList.setValue(responseList);
         }
     }
 
@@ -42,7 +42,7 @@ public class Repository implements Callback<Response> {
         Log.e(getClass().getSimpleName(), "onFailure: " + t.getMessage());
     }
 
-    public LiveData<List<Response>> getResponse() {
-        return response;
+    public LiveData<List<Response>> getResponseLiveList() {
+        return responseLiveList;
     }
 }

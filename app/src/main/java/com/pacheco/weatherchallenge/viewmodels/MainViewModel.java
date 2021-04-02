@@ -13,14 +13,14 @@ import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
 
-    public final LiveData<List<Response>> response;
+    public final LiveData<List<Response>> responseList;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
-        response = new Repository().getResponse();
+        responseList = new Repository().getResponseLiveList();
     }
 
-    public LiveData<List<Response>> getResponse() {
-        return response;
+    public LiveData<List<Response>> getResponseList() {
+        return responseList;
     }
 }
