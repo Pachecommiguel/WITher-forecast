@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData;
 
 import com.pacheco.weatherchallenge.response.City;
 import com.pacheco.weatherchallenge.retrofit.Repository;
-import com.pacheco.weatherchallenge.utils.CityEnum;
 
 public class DetailsViewModel extends AndroidViewModel {
 
@@ -22,6 +21,6 @@ public class DetailsViewModel extends AndroidViewModel {
     }
 
     public void onRefreshItemClick() {
-        repository.refreshCityById(CityEnum.valueOf(city.getValue().getName()).getId());
+        repository.refreshCityById(city.getValue().getId());
     }
 }
