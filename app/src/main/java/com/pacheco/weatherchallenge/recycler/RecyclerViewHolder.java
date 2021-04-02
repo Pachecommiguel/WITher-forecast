@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pacheco.weatherchallenge.databinding.RecyclerviewItemBinding;
-import com.pacheco.weatherchallenge.response.Response;
+import com.pacheco.weatherchallenge.response.City;
 
 public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
@@ -17,8 +17,8 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         this.binding = binding;
     }
 
-    public void bind(Response response, Clickable listener) {
-        itemView.setOnClickListener(v -> listener.onClick(response));
-        binding.setResponse(response);
+    public void bind(City city, Clickable listener) {
+        itemView.setOnClickListener(v -> listener.onClick(city));
+        binding.setCity(city);
     }
 }

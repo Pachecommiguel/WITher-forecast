@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.pacheco.weatherchallenge.response.Response;
+import com.pacheco.weatherchallenge.response.City;
 import com.pacheco.weatherchallenge.utils.Cities;
 import com.pacheco.weatherchallenge.utils.Constants;
 
@@ -20,25 +20,25 @@ public class Repository {
 
     private static Repository instance;
     private final Webservice webservice;
-    private volatile MutableLiveData<List<Response>> responseLiveList = new MutableLiveData<>();
+    private volatile MutableLiveData<List<City>> allCities = new MutableLiveData<>();
 
-    private Callback<Response> callback = new Callback<Response>() {
+    private Callback<City> callback = new Callback<City>() {
         @Override
-        public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+        public void onResponse(Call<City> call, retrofit2.Response<City> response) {
             if (response.isSuccessful()) {
                 handleResponse(response.body());
             }
         }
 
         @Override
-        public void onFailure(Call<Response> call, Throwable t) {
+        public void onFailure(Call<City> call, Throwable t) {
             Log.e(getClass().getSimpleName(), "onFailure: " + t.getMessage());
         }
     };
 
     private Repository() {
         webservice = AppRetrofit.getInstance().create(Webservice.class);
-        responseLiveList.setValue(new ArrayList<>());
+        allCities.setValue(new ArrayList<>());
 
         for (Cities city : Cities.values()) {
             webservice.getWeatherByCityId(city.getId(), Constants.API_KEY).enqueue(callback);
@@ -53,28 +53,29 @@ public class Repository {
         return instance;
     }
 
-    public LiveData<List<Response>> getResponseLiveList() {
-        return responseLiveList;
+    public LiveData<List<City>> getAllCities() {
+        return allCities;
     }
 
-    public LiveData<Response> getResponseById(Integer id) {
-        return Transformations.map(responseLiveList, input -> input.stream().filter(
+    public LiveData<City> getCityById(Integer id) {
+        return Transformations.map(allCities, input -> input.stream().filter(
                 response -> response.getId().equals(id)).findFirst().get());
     }
 
-    public void refreshResponseById(Integer id) {
+    public void refreshCityById(Integer id) {
         webservice.getWeatherByCityId(String.valueOf(id), Constants.API_KEY).enqueue(callback);
     }
 
-    private void handleResponse(Response response) {
-        List<Response> responseList = new ArrayList<>(responseLiveList.getValue());
+    private void handleResponse(City city) {
+        List<City> allCities = new ArrayList<>(this.allCities.getValue());
 
-        if (responseList.contains(response)) {
-            responseList.set(responseList.indexOf(response), response);
+        if (allCities.contains(city)) {
+            allCities.set(allCities.indexOf(city), city);
         } else {
-            responseList.add(response);
+            allCities.add(city);
         }
 
-        responseLiveList.setValue(responseList);
+        allCities.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
+        this.allCities.setValue(allCities);
     }
 }

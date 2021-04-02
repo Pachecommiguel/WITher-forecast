@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="response"
-            type="com.pacheco.weatherchallenge.response.Response" />
+            name="city"
+            type="com.pacheco.weatherchallenge.response.City" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,7 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{response.name}"
+            android:text="@{city.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Item"
-            android:text="@{String.valueOf(response.main.temp)}"
+            android:text="@{String.valueOf(city.main.temp)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/name"
             app:layout_constraintTop_toTopOf="parent"

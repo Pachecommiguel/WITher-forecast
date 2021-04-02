@@ -4,7 +4,7 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-public class Response {
+public class City {
 
     private Coord coord;
     private List<Weather> weatherList;
@@ -74,8 +74,8 @@ public class Response {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-        if (obj instanceof Response) {
-            return this.id.equals(((Response) obj).id);
+        if (obj instanceof City) {
+            return id.equals(((City) obj).id);
         }
 
         return super.equals(obj);

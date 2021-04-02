@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.pacheco.weatherchallenge.databinding.RecyclerviewItemBinding;
-import com.pacheco.weatherchallenge.response.Response;
+import com.pacheco.weatherchallenge.response.City;
 
-public class RecyclerListAdapter extends ListAdapter<Response, RecyclerViewHolder> {
+public class RecyclerListAdapter extends ListAdapter<City, RecyclerViewHolder> {
 
     private final Clickable listener;
 
-    public RecyclerListAdapter(@NonNull DiffUtil.ItemCallback<Response> diffCallback,
+    public RecyclerListAdapter(@NonNull DiffUtil.ItemCallback<City> diffCallback,
                                   Clickable listener) {
         super(diffCallback);
         this.listener = listener;

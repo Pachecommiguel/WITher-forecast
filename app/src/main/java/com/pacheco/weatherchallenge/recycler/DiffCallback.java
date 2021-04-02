@@ -3,17 +3,17 @@ package com.pacheco.weatherchallenge.recycler;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.pacheco.weatherchallenge.response.Response;
+import com.pacheco.weatherchallenge.response.City;
 
-public class DiffCallback extends DiffUtil.ItemCallback<Response> {
+public class DiffCallback extends DiffUtil.ItemCallback<City> {
 
     @Override
-    public boolean areItemsTheSame(@NonNull Response oldItem, @NonNull Response newItem) {
-        return false;
+    public boolean areItemsTheSame(@NonNull City oldItem, @NonNull City newItem) {
+        return oldItem.getId().equals(newItem.getId());
     }
 
     @Override
-    public boolean areContentsTheSame(@NonNull Response oldItem, @NonNull Response newItem) {
+    public boolean areContentsTheSame(@NonNull City oldItem, @NonNull City newItem) {
         return false;
     }
 }

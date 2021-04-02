@@ -31,6 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         MainViewModel viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication())
                 .create(MainViewModel.class);
-        viewModel.getResponseList().observe(this, adapter::submitList);
+        viewModel.getAllCities().observe(this, adapter::submitList);
     }
 }

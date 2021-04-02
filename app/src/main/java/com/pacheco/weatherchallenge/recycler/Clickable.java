@@ -1,8 +1,8 @@
 package com.pacheco.weatherchallenge.recycler;
 
-import com.pacheco.weatherchallenge.response.Response;
+import com.pacheco.weatherchallenge.response.City;
 
 public interface Clickable {
 
-    void onClick(Response response);
+    void onClick(City city);
 }
