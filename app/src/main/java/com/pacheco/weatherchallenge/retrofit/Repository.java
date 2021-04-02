@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 import com.pacheco.weatherchallenge.response.Response;
 import com.pacheco.weatherchallenge.utils.Cities;
@@ -17,16 +18,25 @@ import retrofit2.Callback;
 
 public class Repository implements Callback<Response> {
 
+    private static Repository instance;
     private final Webservice webservice;
-    private final MutableLiveData<List<Response>> responseLiveList = new MutableLiveData<>();
+    private volatile MutableLiveData<List<Response>> responseLiveList = new MutableLiveData<>();
     private volatile List<Response> responseList = new ArrayList<>();
 
-    public Repository() {
+    private Repository() {
         webservice = AppRetrofit.getInstance().create(Webservice.class);
 
         for (Cities city : Cities.values()) {
             webservice.getWeatherByCityId(city.getId(), Constants.API_KEY).enqueue(this);
         }
+    }
+
+    public static Repository getInstance() {
+        if (instance == null) {
+            instance = new Repository();
+        }
+
+        return instance;
     }
 
     @Override
@@ -44,5 +54,10 @@ public class Repository implements Callback<Response> {
 
     public LiveData<List<Response>> getResponseLiveList() {
         return responseLiveList;
+    }
+
+    public LiveData<Response> getResponseById(Integer id) {
+        return Transformations.map(responseLiveList, input -> input.stream().filter(
+                response -> response.getId().equals(id)).findFirst().get());
     }
 }

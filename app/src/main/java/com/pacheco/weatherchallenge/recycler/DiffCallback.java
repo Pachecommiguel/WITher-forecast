@@ -9,7 +9,7 @@ public class DiffCallback extends DiffUtil.ItemCallback<Response> {
 
     @Override
     public boolean areItemsTheSame(@NonNull Response oldItem, @NonNull Response newItem) {
-        return false;
+        return oldItem.getId().equals(newItem.getId());
     }
 
     @Override

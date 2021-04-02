@@ -17,7 +17,7 @@ public class MainViewModel extends AndroidViewModel {
 
     public MainViewModel(@NonNull Application application) {
         super(application);
-        responseList = new Repository().getResponseLiveList();
+        responseList = Repository.getInstance().getResponseLiveList();
     }
 
     public LiveData<List<Response>> getResponseList() {
