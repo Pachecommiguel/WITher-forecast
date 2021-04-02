@@ -1,6 +1,6 @@
 package com.pacheco.weatherchallenge.utils;
 
-public enum Cities {
+public enum CityEnum {
 
     LISBON ("2267057"),
     MADRID ("3117735"),
@@ -15,7 +15,7 @@ public enum Cities {
 
     private String id;
 
-    Cities(String id) {
+    CityEnum(String id) {
         this.id = id;
     }
 

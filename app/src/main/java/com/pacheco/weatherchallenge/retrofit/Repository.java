@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 import com.pacheco.weatherchallenge.response.City;
-import com.pacheco.weatherchallenge.utils.Cities;
+import com.pacheco.weatherchallenge.utils.CityEnum;
 import com.pacheco.weatherchallenge.utils.Constants;
 
 import java.util.ArrayList;
@@ -15,6 +15,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Repository {
 
@@ -24,7 +25,7 @@ public class Repository {
 
     private Callback<City> callback = new Callback<City>() {
         @Override
-        public void onResponse(Call<City> call, retrofit2.Response<City> response) {
+        public void onResponse(Call<City> call, Response<City> response) {
             if (response.isSuccessful()) {
                 handleResponse(response.body());
             }
@@ -40,7 +41,7 @@ public class Repository {
         webservice = AppRetrofit.getInstance().create(Webservice.class);
         allCities.setValue(new ArrayList<>());
 
-        for (Cities city : Cities.values()) {
+        for (CityEnum city : CityEnum.values()) {
             webservice.getWeatherByCityId(city.getId(), Constants.API_KEY).enqueue(callback);
         }
     }
@@ -62,8 +63,8 @@ public class Repository {
                 response -> response.getId().equals(id)).findFirst().get());
     }
 
-    public void refreshCityById(Integer id) {
-        webservice.getWeatherByCityId(String.valueOf(id), Constants.API_KEY).enqueue(callback);
+    public void refreshCityById(String id) {
+        webservice.getWeatherByCityId(id, Constants.API_KEY).enqueue(callback);
     }
 
     private void handleResponse(City city) {
