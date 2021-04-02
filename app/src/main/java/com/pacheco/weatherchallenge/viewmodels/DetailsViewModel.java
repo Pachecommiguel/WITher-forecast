@@ -12,9 +12,15 @@ import com.pacheco.weatherchallenge.retrofit.Repository;
 public class DetailsViewModel extends AndroidViewModel {
 
     public final LiveData<Response> response;
+    private final Repository repository;
 
     public DetailsViewModel(@NonNull Application application, Integer id) {
         super(application);
-        response = Repository.getInstance().getResponseById(id);
+        repository = Repository.getInstance();
+        response = repository.getResponseById(id);
+    }
+
+    public void onRefreshItemClick() {
+        repository.refreshResponseById(response.getValue().getId());
     }
 }

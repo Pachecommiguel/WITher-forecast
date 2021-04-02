@@ -20,11 +20,11 @@ public class Repository implements Callback<Response> {
 
     private static Repository instance;
     private final Webservice webservice;
-    private volatile MutableLiveData<List<Response>> responseLiveList = new MutableLiveData<>();
-    private volatile List<Response> responseList = new ArrayList<>();
+    private MutableLiveData<List<Response>> responseLiveList = new MutableLiveData<>();
 
     private Repository() {
         webservice = AppRetrofit.getInstance().create(Webservice.class);
+        responseLiveList.setValue(new ArrayList<>());
 
         for (Cities city : Cities.values()) {
             webservice.getWeatherByCityId(city.getId(), Constants.API_KEY).enqueue(this);
@@ -39,19 +39,6 @@ public class Repository implements Callback<Response> {
         return instance;
     }
 
-    @Override
-    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-        if (response.isSuccessful()) {
-            responseList.add(response.body());
-            responseLiveList.setValue(responseList);
-        }
-    }
-
-    @Override
-    public void onFailure(Call<Response> call, Throwable t) {
-        Log.e(getClass().getSimpleName(), "onFailure: " + t.getMessage());
-    }
-
     public LiveData<List<Response>> getResponseLiveList() {
         return responseLiveList;
     }
@@ -59,5 +46,35 @@ public class Repository implements Callback<Response> {
     public LiveData<Response> getResponseById(Integer id) {
         return Transformations.map(responseLiveList, input -> input.stream().filter(
                 response -> response.getId().equals(id)).findFirst().get());
+    }
+
+    public void refreshResponseById(Integer id) {
+        webservice.getWeatherByCityId(String.valueOf(id), Constants.API_KEY).enqueue(this);
+    }
+
+    @Override
+    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+        if (response.isSuccessful()) {
+            List<Response> responseList = new ArrayList<>(responseLiveList.getValue());
+
+            //TODO refactor this
+            if (responseList.size() == 10) {
+                for (int i = 0; i < responseList.size(); i++) {
+                    if (responseList.get(i).getId().intValue() == response.body().getId().intValue()) {
+                        responseList.set(i, response.body());
+                    }
+                }
+            } else {
+                responseList.add(response.body());
+            }
+
+            responseLiveList.setValue(responseList);
+            Log.e("TAG", "onResponse: " + response.body().getId() + " " + responseList.size() + " " + responseLiveList.getValue().size() + " " + response.body().getMain().getTemp());
+        }
+    }
+
+    @Override
+    public void onFailure(Call<Response> call, Throwable t) {
+        Log.e(getClass().getSimpleName(), "onFailure: " + t.getMessage());
     }
 }

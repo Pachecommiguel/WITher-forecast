@@ -15,10 +15,10 @@
         tools:context=".ui.fragment.DetailsFragment">
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/main_temp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.response.name}" />
+            android:text="@{String.valueOf(viewModel.response.main.temp)}" />
 
     </LinearLayout>
 </layout>
