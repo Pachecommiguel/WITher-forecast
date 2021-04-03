@@ -19,8 +19,4 @@ public class DetailsViewModel extends AndroidViewModel {
         repository = Repository.getInstance();
         city = repository.getCityById(id);
     }
-
-    public void onRefreshItemClick() {
-        repository.refreshCityById(city.getValue().getId());
-    }
 }
