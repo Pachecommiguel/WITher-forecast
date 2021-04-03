@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.location.LocationServices;
+import com.pacheco.weatherchallenge.R;
 import com.pacheco.weatherchallenge.viewmodels.AndroidViewModelFactory;
 import com.pacheco.weatherchallenge.databinding.ActivityMainBinding;
 import com.pacheco.weatherchallenge.recycler.DiffCallback;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                         .putExtra(Constants.CITY_ID, response.getId())));
 
         setContentView(binding.getRoot());
+        setSupportActionBar(findViewById(R.id.toolbar));
 
         binding.recyclerview.setAdapter(adapter);
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
@@ -42,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getAllCities().observe(this, adapter::submitList);
 
         checkPermissions();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.refresh_item, menu);
+        return true;
     }
 
     @Override
@@ -68,5 +78,9 @@ public class MainActivity extends AppCompatActivity {
                 this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
 
         return isFineGranted && isCoarseGranted;
+    }
+
+    public void onRefreshItemClick(MenuItem item) {
+        viewModel.onRefreshItemClick();
     }
 }

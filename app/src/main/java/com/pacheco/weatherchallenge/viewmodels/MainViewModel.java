@@ -55,4 +55,8 @@ public class MainViewModel extends AndroidViewModel {
                 (grantResults[Constants.FINE] == PackageManager.PERMISSION_GRANTED) &&
                 (grantResults[Constants.COARSE] == PackageManager.PERMISSION_GRANTED);
     }
+
+    public void onRefreshItemClick() {
+        repository.refreshAllCities();
+    }
 }

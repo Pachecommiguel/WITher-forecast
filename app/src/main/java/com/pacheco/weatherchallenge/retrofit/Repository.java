@@ -67,7 +67,7 @@ public class Repository {
         webservice.getWeatherByCityId(String.valueOf(id), Constants.API_KEY).enqueue(callback);
     }
 
-    public synchronized void handleResponse(City city) {
+    public void handleResponse(City city) {
         List<City> allCities = new ArrayList<>(this.allCities.getValue());
 
         if (allCities.contains(city)) {
@@ -85,5 +85,10 @@ public class Repository {
         //TODO se o local for diferente apagar o que existe e fazer o pedido para o novo
         webservice.getWeatherByCoordinates(String.valueOf(lat), String.valueOf(lon),
                 Constants.API_KEY).enqueue(callback);
+    }
+
+    public void refreshAllCities() {
+        allCities.getValue().forEach(city -> webservice.getWeatherByCityId(
+                String.valueOf(city.getId()), Constants.API_KEY).enqueue(callback));
     }
 }
