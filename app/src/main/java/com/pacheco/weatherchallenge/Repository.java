@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge.retrofit;
+package com.pacheco.weatherchallenge;
 
 import android.util.Log;
 
@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 import com.pacheco.weatherchallenge.response.City;
+import com.pacheco.weatherchallenge.retrofit.AppRetrofit;
+import com.pacheco.weatherchallenge.retrofit.Webservice;
 import com.pacheco.weatherchallenge.utils.CityEnum;
 import com.pacheco.weatherchallenge.utils.Constants;
 
@@ -42,7 +44,8 @@ public class Repository {
         allCities.setValue(new ArrayList<>());
 
         for (CityEnum city : CityEnum.values()) {
-            webservice.getWeatherByCityId(city.getId(), Constants.API_KEY).enqueue(callback);
+            webservice.getWeatherByCityId(city.getId(), Constants.API_KEY, Constants.METRIC)
+                    .enqueue(callback);
         }
     }
 
@@ -64,7 +67,8 @@ public class Repository {
     }
 
     public void refreshCityById(Integer id) {
-        webservice.getWeatherByCityId(String.valueOf(id), Constants.API_KEY).enqueue(callback);
+        webservice.getWeatherByCityId(String.valueOf(id), Constants.API_KEY, Constants.METRIC)
+                .enqueue(callback);
     }
 
     public void handleResponse(City city) {
@@ -84,11 +88,11 @@ public class Repository {
         //TODO se o local ja existir nao fazer pedido
         //TODO se o local for diferente apagar o que existe e fazer o pedido para o novo
         webservice.getWeatherByCoordinates(String.valueOf(lat), String.valueOf(lon),
-                Constants.API_KEY).enqueue(callback);
+                Constants.API_KEY, Constants.METRIC).enqueue(callback);
     }
 
     public void refreshAllCities() {
         allCities.getValue().forEach(city -> webservice.getWeatherByCityId(
-                String.valueOf(city.getId()), Constants.API_KEY).enqueue(callback));
+                String.valueOf(city.getId()), Constants.API_KEY, Constants.METRIC).enqueue(callback));
     }
 }

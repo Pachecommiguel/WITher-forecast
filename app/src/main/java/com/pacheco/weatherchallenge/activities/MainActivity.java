@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.location.LocationServices;
 import com.pacheco.weatherchallenge.R;
-import com.pacheco.weatherchallenge.viewmodels.AndroidViewModelFactory;
+import com.pacheco.weatherchallenge.AndroidViewModelFactory;
 import com.pacheco.weatherchallenge.databinding.ActivityMainBinding;
 import com.pacheco.weatherchallenge.recycler.DiffCallback;
 import com.pacheco.weatherchallenge.recycler.RecyclerListAdapter;

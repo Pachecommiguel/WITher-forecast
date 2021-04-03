@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.pacheco.weatherchallenge.Repository;
 import com.pacheco.weatherchallenge.response.City;
-import com.pacheco.weatherchallenge.retrofit.Repository;
 
 public class DetailsViewModel extends AndroidViewModel {
 
@@ -18,6 +18,10 @@ public class DetailsViewModel extends AndroidViewModel {
         super(application);
         repository = Repository.getInstance();
         city = repository.getCityById(id);
+    }
+
+    public LiveData<City> getCity() {
+        return city;
     }
 
     public void onRefreshItemClick() {

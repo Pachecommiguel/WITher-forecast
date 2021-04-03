@@ -11,13 +11,15 @@ public interface Webservice {
     @GET("/data/2.5/weather")
     Call<City> getWeatherByCityId(
             @Query("id") String cityId,
-            @Query("appid") String apiKey
+            @Query("appid") String apiKey,
+            @Query("units") String units
     );
 
     @GET("/data/2.5/weather")
     Call<City> getWeatherByCoordinates(
             @Query("lat") String lat,
             @Query("lon") String lon,
-            @Query("appid") String apiKey
+            @Query("appid") String apiKey,
+            @Query("units") String units
     );
 }

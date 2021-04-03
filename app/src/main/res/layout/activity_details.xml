@@ -20,7 +20,55 @@
             android:id="@+id/main_temp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(viewModel.city.main.temp)}" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@{`Temperature: ` + viewModel.city.main.temp + ` ºC`}" />
+
+        <TextView
+            android:id="@+id/hum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@{`Humidity: ` + viewModel.city.main.humidity + ` %`}" />
+
+        <TextView
+            android:id="@+id/pressure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@{`Pressure: ` + viewModel.city.main.pressure + ` hPa`}" />
+
+        <TextView
+            android:id="@+id/wind_speed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@{`Wind speed: ` + viewModel.city.wind.speed + ` meter/sec`}" />
+
+        <TextView
+            android:id="@+id/wind_deg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@{`Wind direction: ` + viewModel.city.wind.deg + ` degrees`}" />
+
+        <TextView
+            android:id="@+id/clouds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@{`Cloudiness: ` + viewModel.city.clouds.all + ` %`}" />
 
     </LinearLayout>
 </layout>

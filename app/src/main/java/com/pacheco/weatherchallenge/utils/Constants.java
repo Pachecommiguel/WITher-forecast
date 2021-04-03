@@ -9,4 +9,5 @@ public abstract class Constants {
     public static final int FINE = 0;
     public static final int COARSE = 1;
     public static final int EMPTY = 0;
+    public static final String METRIC = "metric";
 }

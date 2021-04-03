@@ -6,8 +6,8 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.pacheco.weatherchallenge.AndroidViewModelFactory;
 import com.pacheco.weatherchallenge.R;
-import com.pacheco.weatherchallenge.viewmodels.AndroidViewModelFactory;
 import com.pacheco.weatherchallenge.databinding.ActivityDetailsBinding;
 import com.pacheco.weatherchallenge.utils.Constants;
 import com.pacheco.weatherchallenge.viewmodels.DetailsViewModel;
@@ -23,6 +23,8 @@ public class DetailsActivity extends AppCompatActivity {
         viewModel = new AndroidViewModelFactory(getApplication(),
                 getIntent().getExtras().getInt(Constants.CITY_ID))
                 .create(DetailsViewModel.class);
+        viewModel.getCity().observe(this, city -> getSupportActionBar()
+                .setTitle(city.getName()));
 
         ActivityDetailsBinding binding = ActivityDetailsBinding.inflate(getLayoutInflater());
         binding.setViewModel(viewModel);
@@ -30,6 +32,11 @@ public class DetailsActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
         setSupportActionBar(findViewById(R.id.toolbar));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override
