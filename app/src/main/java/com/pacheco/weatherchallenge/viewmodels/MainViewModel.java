@@ -41,6 +41,10 @@ public class MainViewModel extends AndroidViewModel {
         getLastLocation();
     }
 
+    public void onRefreshItemClick() {
+        repository.refreshAllCities();
+    }
+
     private void getLastLocation() {
         client.getLastLocation().addOnSuccessListener(location -> {
             if (location != null) {
@@ -54,9 +58,5 @@ public class MainViewModel extends AndroidViewModel {
                 (grantResults.length != Constants.EMPTY) &&
                 (grantResults[Constants.FINE] == PackageManager.PERMISSION_GRANTED) &&
                 (grantResults[Constants.COARSE] == PackageManager.PERMISSION_GRANTED);
-    }
-
-    public void onRefreshItemClick() {
-        repository.refreshAllCities();
     }
 }
