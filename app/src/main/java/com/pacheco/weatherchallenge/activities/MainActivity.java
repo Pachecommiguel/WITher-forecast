@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         binding.recyclerview.setAdapter(adapter);
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
 
-        viewModel = new AndroidViewModelFactory(getApplication(), null,
+        viewModel = new AndroidViewModelFactory(getApplication(),
                 LocationServices.getFusedLocationProviderClient(this))
                 .create(MainViewModel.class);
         viewModel.getAllCities().observe(this, adapter::submitList);

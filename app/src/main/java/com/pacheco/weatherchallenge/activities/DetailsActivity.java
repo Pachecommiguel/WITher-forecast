@@ -18,7 +18,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         viewModel = new AndroidViewModelFactory(getApplication(),
-                getIntent().getExtras().getInt(Constants.CITY_ID), null)
+                getIntent().getExtras().getInt(Constants.CITY_ID))
                 .create(DetailsViewModel.class);
 
         ActivityDetailsBinding binding = ActivityDetailsBinding.inflate(getLayoutInflater());

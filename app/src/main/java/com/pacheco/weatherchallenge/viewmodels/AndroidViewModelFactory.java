@@ -14,11 +14,16 @@ public class AndroidViewModelFactory extends ViewModelProvider.AndroidViewModelF
     private Integer id;
     private FusedLocationProviderClient client;
 
-    public AndroidViewModelFactory(@NonNull Application application, Integer id,
-                                   FusedLocationProviderClient client) {
+    public AndroidViewModelFactory(@NonNull Application application, Integer id) {
         super(application);
         this.application = application;
         this.id = id;
+    }
+
+    public AndroidViewModelFactory(@NonNull Application application,
+                                   FusedLocationProviderClient client) {
+        super(application);
+        this.application = application;
         this.client = client;
     }
 

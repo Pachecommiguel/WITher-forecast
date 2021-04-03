@@ -48,11 +48,7 @@ public class Repository {
 
     public static Repository getInstance() {
         if (instance == null) {
-            synchronized (Repository.class) {
-                if (instance == null) {
-                    instance = new Repository();
-                }
-            }
+            instance = new Repository();
         }
 
         return instance;
@@ -71,7 +67,7 @@ public class Repository {
         webservice.getWeatherByCityId(String.valueOf(id), Constants.API_KEY).enqueue(callback);
     }
 
-    public void handleResponse(City city) {
+    public synchronized void handleResponse(City city) {
         List<City> allCities = new ArrayList<>(this.allCities.getValue());
 
         if (allCities.contains(city)) {
