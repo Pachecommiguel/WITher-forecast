@@ -27,6 +27,7 @@ public class AndroidViewModelFactory extends ViewModelProvider.AndroidViewModelF
         this.client = client;
     }
 
+    @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
