@@ -44,7 +44,7 @@ public class Repository {
         allCities.setValue(new ArrayList<>());
 
         for (CityEnum city : CityEnum.values()) {
-            webservice.getWeatherByCityId(city.getId(), Constants.API_KEY, Constants.METRIC)
+            webservice.getWeatherByCityId(city.getId(), BuildConfig.apiKey, Constants.METRIC)
                     .enqueue(callback);
         }
     }
@@ -67,7 +67,7 @@ public class Repository {
     }
 
     public void refreshCityById(Integer id) {
-        webservice.getWeatherByCityId(String.valueOf(id), Constants.API_KEY, Constants.METRIC)
+        webservice.getWeatherByCityId(String.valueOf(id), BuildConfig.apiKey, Constants.METRIC)
                 .enqueue(callback);
     }
 
@@ -86,11 +86,11 @@ public class Repository {
 
     public void addCityByCoordinates(double lat, double lon) {
         webservice.getWeatherByCoordinates(String.valueOf(lat), String.valueOf(lon),
-                Constants.API_KEY, Constants.METRIC).enqueue(callback);
+                BuildConfig.apiKey, Constants.METRIC).enqueue(callback);
     }
 
     public void refreshAllCities() {
         allCities.getValue().forEach(city -> webservice.getWeatherByCityId(
-                String.valueOf(city.getId()), Constants.API_KEY, Constants.METRIC).enqueue(callback));
+                String.valueOf(city.getId()), BuildConfig.apiKey, Constants.METRIC).enqueue(callback));
     }
 }
