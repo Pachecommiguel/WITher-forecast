@@ -61,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
         viewModel.onRequestPermissionsResult(requestCode, grantResults);
     }
 
+    public void onRefreshItemClick(MenuItem item) {
+        checkPermissions();
+        viewModel.onRefreshItemClick();
+    }
+
     private void checkPermissions() {
         if (isPermissionsGiven()) {
             viewModel.onPermissionsGranted();
@@ -78,9 +83,5 @@ public class MainActivity extends AppCompatActivity {
                 this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
 
         return isFineGranted && isCoarseGranted;
-    }
-
-    public void onRefreshItemClick(MenuItem item) {
-        viewModel.onRefreshItemClick();
     }
 }
