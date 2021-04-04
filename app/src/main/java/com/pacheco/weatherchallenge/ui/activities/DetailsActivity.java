@@ -41,8 +41,12 @@ public class DetailsActivity extends AppCompatActivity {
                 getIntent().getExtras().getInt(Constants.CITY_ID))
                 .create(DetailsViewModel.class);
 
-        viewModel.getCity().observe(this, city -> getSupportActionBar()
-                .setTitle(city.getName()));
+        viewModel.getCity().observe(this, city -> {
+            if (city != null) {
+                getSupportActionBar().setTitle(city.getName());
+            }
+        });
+
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
     }

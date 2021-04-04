@@ -7,16 +7,14 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.pacheco.weatherchallenge.viewmodels.DetailsViewModel;
-import com.pacheco.weatherchallenge.viewmodels.MainViewModel;
 
 public class AndroidViewModelFactory extends ViewModelProvider.AndroidViewModelFactory {
 
     private final Application application;
-    private Integer id;
+    private int id;
     private FusedLocationProviderClient client;
 
-    public AndroidViewModelFactory(@NonNull Application application, Integer id) {
+    public AndroidViewModelFactory(@NonNull Application application, int id) {
         super(application);
         this.application = application;
         this.id = id;

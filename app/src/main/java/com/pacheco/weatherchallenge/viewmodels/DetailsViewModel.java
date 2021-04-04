@@ -14,7 +14,7 @@ public class DetailsViewModel extends AndroidViewModel {
     public final LiveData<City> city;
     private final Repository repository;
 
-    public DetailsViewModel(@NonNull Application application, Integer id) {
+    public DetailsViewModel(@NonNull Application application, int id) {
         super(application);
         repository = Repository.getInstance();
         city = repository.getCityById(id);

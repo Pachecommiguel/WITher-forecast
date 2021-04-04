@@ -12,6 +12,8 @@ import com.pacheco.weatherchallenge.retrofit.Webservice;
 import com.pacheco.weatherchallenge.utils.CityEnum;
 import com.pacheco.weatherchallenge.utils.Constants;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,16 +27,16 @@ public class Repository {
     private final Webservice webservice;
     private final MutableLiveData<List<City>> allCities = new MutableLiveData<>();
 
-    private Callback<City> callback = new Callback<City>() {
+    private final Callback<City> callback = new Callback<City>() {
         @Override
-        public void onResponse(Call<City> call, Response<City> response) {
+        public void onResponse(@NotNull Call<City> call, Response<City> response) {
             if (response.isSuccessful()) {
                 handleResponse(response.body());
             }
         }
 
         @Override
-        public void onFailure(Call<City> call, Throwable t) {
+        public void onFailure(@NotNull Call<City> call, Throwable t) {
             Log.e(getClass().getSimpleName(), "onFailure: " + t.getMessage());
         }
     };
@@ -61,12 +63,12 @@ public class Repository {
         return allCities;
     }
 
-    public LiveData<City> getCityById(Integer id) {
+    public LiveData<City> getCityById(int id) {
         return Transformations.map(allCities, input -> input.stream().filter(response ->
-                response.getId() == id).findFirst().get());
+                response.getId() == id).findFirst().orElse(null));
     }
 
-    public void refreshCityById(Integer id) {
+    public void refreshCityById(int id) {
         webservice.getWeatherByCityId(String.valueOf(id), BuildConfig.API_KEY, Constants.METRIC)
                 .enqueue(callback);
     }
