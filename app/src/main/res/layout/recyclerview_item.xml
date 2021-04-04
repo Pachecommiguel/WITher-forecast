@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:paddingRight="5dp"
             android:text="@{city.main.temp.intValue() + ` ºC`}"
-            android:textSize="14sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintEnd_toStartOf="@+id/imageView4"
             app:layout_constraintTop_toTopOf="@+id/imageView2"
@@ -53,7 +53,7 @@
             android:id="@+id/imageView4"
             android:layout_width="21dp"
             android:layout_height="23dp"
-            android:src="@drawable/temp"
+            android:src="@drawable/temperature"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintEnd_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />

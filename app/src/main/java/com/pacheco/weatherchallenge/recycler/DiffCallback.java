@@ -14,7 +14,7 @@ public class DiffCallback extends DiffUtil.ItemCallback<City> {
 
     @Override
     public boolean areContentsTheSame(@NonNull City oldItem, @NonNull City newItem) {
-        //TODO
-        return false;
+        return oldItem.getName().equals(newItem.getName()) &&
+                oldItem.getMain().getTemp().intValue() == newItem.getMain().getTemp().intValue();
     }
 }
