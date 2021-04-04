@@ -1,3 +1,3 @@
 # WITher-forecast
 WIP
-Android Challenge with Retrofit
+Android Challenge MVVM with Retrofit
