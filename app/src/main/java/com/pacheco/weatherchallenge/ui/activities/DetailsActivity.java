@@ -28,12 +28,13 @@ public class DetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.refresh_item, menu);
+        getMenuInflater().inflate(R.menu.delete_item, menu);
         return true;
     }
 
-    public void onRefreshItemClick(MenuItem item) {
-        viewModel.onRefreshItemClick();
+    public void onDeleteItemClick(MenuItem item) {
+        viewModel.onDeleteItemClick();
+        finish();
     }
 
     private void setUpViewModel(ActivityDetailsBinding binding) {

@@ -24,7 +24,7 @@ public class DetailsViewModel extends AndroidViewModel {
         return city;
     }
 
-    public void onRefreshItemClick() {
-        repository.refreshCityById(city.getValue().getId());
+    public void onDeleteItemClick() {
+        repository.deleteCity(city.getValue());
     }
 }

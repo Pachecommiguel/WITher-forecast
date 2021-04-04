@@ -68,11 +68,6 @@ public class Repository {
                 response.getId() == id).findFirst().orElse(null));
     }
 
-    public void refreshCityById(int id) {
-        webservice.getWeatherByCityId(String.valueOf(id), BuildConfig.API_KEY, Constants.METRIC)
-                .enqueue(callback);
-    }
-
     public void handleResponse(City city) {
         List<City> allCities = new ArrayList<>(this.allCities.getValue());
 
@@ -94,5 +89,11 @@ public class Repository {
     public void refreshAllCities() {
         allCities.getValue().forEach(city -> webservice.getWeatherByCityId(
                 String.valueOf(city.getId()), BuildConfig.API_KEY, Constants.METRIC).enqueue(callback));
+    }
+
+    public void deleteCity(City city) {
+        List<City> allCities = new ArrayList<>(this.allCities.getValue());
+        allCities.remove(city);
+        this.allCities.setValue(allCities);
     }
 }
