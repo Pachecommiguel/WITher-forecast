@@ -30,9 +30,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        RecyclerListAdapter adapter = new RecyclerListAdapter(new DiffCallback(), response ->
+        RecyclerListAdapter adapter = new RecyclerListAdapter(new DiffCallback(), response -> {
+            if (response.getId() == Constants.ADD_ID) {
+                //TODO alert dialog
+            } else {
                 startActivity(new Intent(this, DetailsActivity.class)
-                        .putExtra(Constants.CITY_ID, response.getId())));
+                        .putExtra(Constants.CITY_ID, response.getId()));
+            }
+        });
 
         setContentView(binding.getRoot());
         setSupportActionBar(findViewById(R.id.toolbar));

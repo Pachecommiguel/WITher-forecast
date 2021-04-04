@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WeatherChallenge</string>
+    <string name="chevron_right">chevron_right</string>
+    <string name="temperature">temperature</string>
 </resources>

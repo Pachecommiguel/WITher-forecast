@@ -19,6 +19,12 @@ public class City {
         clouds = new Clouds(cloudsAll);
     }
 
+    public City(int id, String name) {
+        this.id = id;
+        this.name = name;
+        main = new Main();
+    }
+
     public int getId() {
         return id;
     }

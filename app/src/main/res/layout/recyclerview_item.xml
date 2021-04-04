@@ -23,9 +23,9 @@
             android:layout_height="wrap_content"
             android:text="@{city.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintBottom_toBottomOf="@+id/chevron_right"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/chevron_right"
             tools:text="name" />
 
         <TextView
@@ -35,28 +35,30 @@
             android:paddingRight="5dp"
             android:text="@{Math.round(city.main.temp) + ` ºC`}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintEnd_toStartOf="@+id/imageView4"
-            app:layout_constraintTop_toTopOf="@+id/imageView2"
+            app:layout_constraintBottom_toBottomOf="@+id/chevron_right"
+            app:layout_constraintEnd_toStartOf="@+id/temperature"
+            app:layout_constraintTop_toTopOf="@+id/chevron_right"
             tools:text="temp" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/chevron_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_chevron_right" />
+            app:srcCompat="@drawable/ic_chevron_right"
+            android:contentDescription="@string/chevron_right" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/temperature"
             android:layout_width="21dp"
             android:layout_height="23dp"
             android:src="@drawable/temperature"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+            app:layout_constraintBottom_toBottomOf="@+id/chevron_right"
+            app:layout_constraintEnd_toStartOf="@+id/chevron_right"
+            app:layout_constraintTop_toTopOf="@+id/chevron_right"
+            android:contentDescription="@string/temperature" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
