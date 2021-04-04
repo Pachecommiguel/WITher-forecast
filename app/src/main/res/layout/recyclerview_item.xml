@@ -7,7 +7,7 @@
     <data>
         <variable
             name="city"
-            type="com.pacheco.weatherchallenge.response.City" />
+            type="com.pacheco.weatherchallenge.retrofit.response.City" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="5dp"
-            android:text="@{city.main.temp.intValue() + ` ºC`}"
+            android:text="@{Math.round(city.main.temp) + ` ºC`}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintEnd_toStartOf="@+id/imageView4"

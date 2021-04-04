@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.pacheco.weatherchallenge.response.City;
+import com.pacheco.weatherchallenge.retrofit.response.City;
 import com.pacheco.weatherchallenge.retrofit.AppRetrofit;
 import com.pacheco.weatherchallenge.retrofit.Webservice;
 import com.pacheco.weatherchallenge.utils.CityEnum;
@@ -63,7 +63,7 @@ public class Repository {
 
     public LiveData<City> getCityById(Integer id) {
         return Transformations.map(allCities, input -> input.stream().filter(response ->
-                response.getId().equals(id)).findFirst().get());
+                response.getId() == id).findFirst().get());
     }
 
     public void refreshCityById(Integer id) {

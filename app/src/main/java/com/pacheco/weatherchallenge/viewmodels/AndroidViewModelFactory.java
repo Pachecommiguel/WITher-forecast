@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge;
+package com.pacheco.weatherchallenge.viewmodels;
 
 import android.app.Application;
 

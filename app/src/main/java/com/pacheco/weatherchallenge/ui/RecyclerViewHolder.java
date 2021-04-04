@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge.recycler;
+package com.pacheco.weatherchallenge.ui;
 
 import android.view.View;
 
@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pacheco.weatherchallenge.databinding.RecyclerviewItemBinding;
-import com.pacheco.weatherchallenge.response.City;
+import com.pacheco.weatherchallenge.retrofit.response.City;
 
 public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 

@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge.activities;
+package com.pacheco.weatherchallenge.ui.activities;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -6,7 +6,7 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.pacheco.weatherchallenge.AndroidViewModelFactory;
+import com.pacheco.weatherchallenge.viewmodels.AndroidViewModelFactory;
 import com.pacheco.weatherchallenge.R;
 import com.pacheco.weatherchallenge.databinding.ActivityDetailsBinding;
 import com.pacheco.weatherchallenge.utils.Constants;

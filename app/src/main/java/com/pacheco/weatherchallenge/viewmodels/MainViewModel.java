@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.pacheco.weatherchallenge.Repository;
-import com.pacheco.weatherchallenge.response.City;
+import com.pacheco.weatherchallenge.retrofit.response.City;
 import com.pacheco.weatherchallenge.utils.Constants;
 
 import java.util.List;
