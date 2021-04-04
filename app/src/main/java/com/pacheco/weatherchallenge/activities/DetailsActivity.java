@@ -21,8 +21,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityDetailsBinding binding = ActivityDetailsBinding.inflate(getLayoutInflater());
 
-        setUpViewModel();
-        setUpBinding(binding);
+        setUpViewModel(binding);
         setContentView(binding.getRoot());
         setSupportActionBar(findViewById(R.id.toolbar));
     }
@@ -37,15 +36,13 @@ public class DetailsActivity extends AppCompatActivity {
         viewModel.onRefreshItemClick();
     }
 
-    private void setUpViewModel() {
+    private void setUpViewModel(ActivityDetailsBinding binding) {
         viewModel = new AndroidViewModelFactory(getApplication(),
                 getIntent().getExtras().getInt(Constants.CITY_ID))
                 .create(DetailsViewModel.class);
+
         viewModel.getCity().observe(this, city -> getSupportActionBar()
                 .setTitle(city.getName()));
-    }
-
-    private void setUpBinding(ActivityDetailsBinding binding) {
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
     }
