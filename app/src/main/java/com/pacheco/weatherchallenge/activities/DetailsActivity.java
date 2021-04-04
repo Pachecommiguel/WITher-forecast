@@ -19,17 +19,10 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        viewModel = new AndroidViewModelFactory(getApplication(),
-                getIntent().getExtras().getInt(Constants.CITY_ID))
-                .create(DetailsViewModel.class);
-        viewModel.getCity().observe(this, city -> getSupportActionBar()
-                .setTitle(city.getName()));
-
         ActivityDetailsBinding binding = ActivityDetailsBinding.inflate(getLayoutInflater());
-        binding.setViewModel(viewModel);
-        binding.setLifecycleOwner(this);
 
+        setUpViewModel();
+        setUpBinding(binding);
         setContentView(binding.getRoot());
         setSupportActionBar(findViewById(R.id.toolbar));
     }
@@ -42,5 +35,18 @@ public class DetailsActivity extends AppCompatActivity {
 
     public void onRefreshItemClick(MenuItem item) {
         viewModel.onRefreshItemClick();
+    }
+
+    private void setUpViewModel() {
+        viewModel = new AndroidViewModelFactory(getApplication(),
+                getIntent().getExtras().getInt(Constants.CITY_ID))
+                .create(DetailsViewModel.class);
+        viewModel.getCity().observe(this, city -> getSupportActionBar()
+                .setTitle(city.getName()));
+    }
+
+    private void setUpBinding(ActivityDetailsBinding binding) {
+        binding.setViewModel(viewModel);
+        binding.setLifecycleOwner(this);
     }
 }

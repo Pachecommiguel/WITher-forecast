@@ -37,14 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setSupportActionBar(findViewById(R.id.toolbar));
 
-        binding.recyclerview.setAdapter(adapter);
-        binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
-
-        viewModel = new AndroidViewModelFactory(getApplication(),
-                LocationServices.getFusedLocationProviderClient(this))
-                .create(MainViewModel.class);
-        viewModel.getAllCities().observe(this, adapter::submitList);
-
+        setUpRecyclerView(adapter, binding);
+        setUpViewModel(adapter);
         checkPermissions();
     }
 
@@ -83,5 +77,17 @@ public class MainActivity extends AppCompatActivity {
                 this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
 
         return isFineGranted && isCoarseGranted;
+    }
+
+    private void setUpRecyclerView(RecyclerListAdapter adapter, ActivityMainBinding binding) {
+        binding.recyclerview.setAdapter(adapter);
+        binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void setUpViewModel(RecyclerListAdapter adapter) {
+        viewModel = new AndroidViewModelFactory(getApplication(),
+                LocationServices.getFusedLocationProviderClient(this))
+                .create(MainViewModel.class);
+        viewModel.getAllCities().observe(this, adapter::submitList);
     }
 }

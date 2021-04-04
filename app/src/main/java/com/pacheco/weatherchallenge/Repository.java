@@ -85,8 +85,6 @@ public class Repository {
     }
 
     public void addCityByCoordinates(double lat, double lon) {
-        //TODO se o local ja existir nao fazer pedido
-        //TODO se o local for diferente apagar o que existe e fazer o pedido para o novo
         webservice.getWeatherByCoordinates(String.valueOf(lat), String.valueOf(lon),
                 Constants.API_KEY, Constants.METRIC).enqueue(callback);
     }
