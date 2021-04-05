@@ -8,4 +8,7 @@
     <string name="longitude">Longitude</string>
     <string name="not_found">Not found!</string>
     <string name="fill_name">Fill the name!</string>
+    <string name="gps_disabled">GPS is disabled. Would you like to enable it?</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
 </resources>

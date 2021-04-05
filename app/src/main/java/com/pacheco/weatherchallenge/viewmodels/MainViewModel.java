@@ -54,7 +54,7 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     private boolean isPermissionsGranted(int requestCode, int[] grantResults) {
-        return (requestCode == Constants.REQUEST_CODE) &&
+        return (requestCode == Constants.LOCAL_REQUEST_CODE) &&
                 (grantResults.length != Constants.EMPTY) &&
                 (grantResults[Constants.FINE] == PackageManager.PERMISSION_GRANTED) &&
                 (grantResults[Constants.COARSE] == PackageManager.PERMISSION_GRANTED);
