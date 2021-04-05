@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.location.LocationServices;
 import com.pacheco.weatherchallenge.R;
-import com.pacheco.weatherchallenge.viewmodels.AndroidViewModelFactory;
+import com.pacheco.weatherchallenge.AndroidViewModelFactory;
 import com.pacheco.weatherchallenge.databinding.ActivityMainBinding;
 import com.pacheco.weatherchallenge.ui.DiffCallback;
 import com.pacheco.weatherchallenge.ui.RecyclerListAdapter;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         RecyclerListAdapter adapter = new RecyclerListAdapter(new DiffCallback(), response -> {
             if (response.getId() == Constants.ADD_ID) {
-                //TODO alert dialog
+                startActivity(new Intent(this, AddActivity.class));
             } else {
                 startActivity(new Intent(this, DetailsActivity.class)
                         .putExtra(Constants.CITY_ID, response.getId()));

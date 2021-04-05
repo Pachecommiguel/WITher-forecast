@@ -83,7 +83,7 @@ public class Repository {
     }
 
     public void addCityByCoordinates(double lat, double lon) {
-        webservice.getWeatherByCoordinates(String.valueOf(lat), String.valueOf(lon),
+        webservice.getWeatherByCityCoordinates(String.valueOf(lat), String.valueOf(lon),
                 BuildConfig.API_KEY, Constants.METRIC).enqueue(callback);
     }
 
@@ -96,5 +96,9 @@ public class Repository {
         List<City> allCities = new ArrayList<>(this.allCities.getValue());
         allCities.remove(city);
         this.allCities.setValue(allCities);
+    }
+
+    public void addCityByName(String name) {
+        webservice.getWeatherByCityName(name, BuildConfig.API_KEY, Constants.METRIC).enqueue(callback);
     }
 }
