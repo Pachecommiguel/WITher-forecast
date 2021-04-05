@@ -2,4 +2,8 @@
     <string name="app_name">WeatherChallenge</string>
     <string name="chevron_right">chevron_right</string>
     <string name="temperature">temperature</string>
+    <string name="name">Name</string>
+    <string name="search">Search</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
 </resources>

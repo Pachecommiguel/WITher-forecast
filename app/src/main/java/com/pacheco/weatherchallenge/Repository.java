@@ -78,7 +78,6 @@ public class Repository {
         }
 
         allCities.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
-        allCities.set(Constants.FIRST_INDEX, new City(Constants.ADD_ID, Constants.ADD_DESCRIPTION));
         this.allCities.setValue(allCities);
     }
 

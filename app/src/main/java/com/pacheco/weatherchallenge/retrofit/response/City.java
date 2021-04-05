@@ -9,6 +9,7 @@ public class City {
     private Wind wind;
     private Clouds clouds;
     private String name;
+    private Coord coord;
 
     public City(int id, String name, double mainTemp, int mainPressure, int mainHumidity,
                 double windSpeed, int windDeg, int cloudsAll) {
@@ -23,6 +24,10 @@ public class City {
         this.id = id;
         this.name = name;
         main = new Main();
+    }
+
+    public City() {
+        coord = new Coord();
     }
 
     public int getId() {
@@ -43,6 +48,14 @@ public class City {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Coord getCoord() {
+        return coord;
     }
 
     @Override

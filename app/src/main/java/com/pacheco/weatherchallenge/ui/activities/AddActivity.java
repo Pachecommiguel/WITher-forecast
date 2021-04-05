@@ -27,6 +27,7 @@ public class AddActivity extends AppCompatActivity {
 
         binding.setViewModel(viewModel);
         setSupportActionBar(findViewById(R.id.toolbar));
+        getSupportActionBar().setTitle(R.string.search);
     }
 
     @Override

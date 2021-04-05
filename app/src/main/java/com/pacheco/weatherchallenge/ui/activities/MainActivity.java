@@ -30,14 +30,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        RecyclerListAdapter adapter = new RecyclerListAdapter(new DiffCallback(), response -> {
-            if (response.getId() == Constants.ADD_ID) {
-                startActivity(new Intent(this, AddActivity.class));
-            } else {
+        RecyclerListAdapter adapter = new RecyclerListAdapter(new DiffCallback(), response ->
                 startActivity(new Intent(this, DetailsActivity.class)
-                        .putExtra(Constants.CITY_ID, response.getId()));
-            }
-        });
+                .putExtra(Constants.CITY_ID, response.getId())));
 
         setContentView(binding.getRoot());
         setSupportActionBar(findViewById(R.id.toolbar));
@@ -49,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.add_item, menu);
         getMenuInflater().inflate(R.menu.refresh_item, menu);
         return true;
     }
@@ -63,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
     public void onRefreshItemClick(MenuItem item) {
         checkPermissions();
         viewModel.onRefreshItemClick();
+    }
+
+    public void onAddItemClick(MenuItem item) {
+        startActivity(new Intent(this, AddActivity.class));
     }
 
     private void checkPermissions() {
