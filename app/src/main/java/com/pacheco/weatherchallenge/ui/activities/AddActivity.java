@@ -3,6 +3,7 @@ package com.pacheco.weatherchallenge.ui.activities;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -25,6 +26,14 @@ public class AddActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication())
                 .create(AddViewModel.class);
 
+        viewModel.getStatus().observe(this, status -> {
+            if (status) {
+                finish();
+            } else {
+                Toast.makeText(this, "Fill the name!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         binding.setViewModel(viewModel);
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setTitle(R.string.search);
@@ -38,6 +47,5 @@ public class AddActivity extends AppCompatActivity {
 
     public void onConfirmItemClick(MenuItem item) {
         viewModel.onConfirmItemClick();
-        finish();
     }
 }

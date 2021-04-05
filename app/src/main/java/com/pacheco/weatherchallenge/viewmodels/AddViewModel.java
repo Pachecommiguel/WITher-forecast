@@ -8,12 +8,13 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.pacheco.weatherchallenge.Repository;
 import com.pacheco.weatherchallenge.retrofit.response.City;
-import com.pacheco.weatherchallenge.retrofit.response.Coord;
+import com.pacheco.weatherchallenge.utils.Constants;
 
 public class AddViewModel extends AndroidViewModel {
 
     private final Repository repository;
     public final MutableLiveData<City> city = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> status = new MutableLiveData<>();
 
     public AddViewModel(@NonNull Application application) {
         super(application);
@@ -21,14 +22,16 @@ public class AddViewModel extends AndroidViewModel {
         city.setValue(new City());
     }
 
+    public MutableLiveData<Boolean> getStatus() {
+        return status;
+    }
+
     public void onConfirmItemClick() {
         String name = city.getValue().getName();
+        status.setValue(!((name == null) || name.trim().equals(Constants.EMPTY_FIELD)));
 
-        if ((name != null) && (!name.trim().equals(""))) {
+        if (status.getValue()) {
             repository.addCityByName(name.trim());
-        } else {
-            Coord coord = city.getValue().getCoord();
-            repository.addCityByCoordinates(coord.getLat(), coord.getLon());
         }
     }
 }
