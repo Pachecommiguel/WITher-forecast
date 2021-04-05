@@ -6,7 +6,7 @@ public class Converter {
 
     @InverseMethod("stringToDouble")
     public static String doubleToString(double value) {
-        return String.valueOf(value);
+        return (value == 0) ? "" : String.valueOf(value);
     }
 
     public static double stringToDouble(String value) {

@@ -37,7 +37,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
     public void onConfirmItemClick(MenuItem item) {
-        viewModel.onAddButtonClick();
+        viewModel.onConfirmItemClick();
         finish();
     }
 }

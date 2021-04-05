@@ -21,7 +21,7 @@ public class AddViewModel extends AndroidViewModel {
         city.setValue(new City());
     }
 
-    public void onAddButtonClick() {
+    public void onConfirmItemClick() {
         String name = city.getValue().getName();
 
         if ((name != null) && (!name.trim().equals(""))) {
