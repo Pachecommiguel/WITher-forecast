@@ -8,29 +8,28 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.pacheco.weatherchallenge.Repository;
 import com.pacheco.weatherchallenge.retrofit.response.City;
-import com.pacheco.weatherchallenge.utils.Constants;
 
 public class AddViewModel extends AndroidViewModel {
 
     private final Repository repository;
     public final MutableLiveData<City> city = new MutableLiveData<>();
-    private final MutableLiveData<Boolean> status = new MutableLiveData<>();
+    private final MutableLiveData<Integer> statusCode;
 
     public AddViewModel(@NonNull Application application) {
         super(application);
         repository = Repository.getInstance();
+        statusCode = repository.getStatusCode();
         city.setValue(new City());
     }
 
-    public MutableLiveData<Boolean> getStatus() {
-        return status;
+    public MutableLiveData<Integer> getStatusCode() {
+        return statusCode;
     }
 
     public void onConfirmItemClick() {
         String name = city.getValue().getName();
-        status.setValue(!((name == null) || name.trim().equals(Constants.EMPTY_FIELD)));
 
-        if (status.getValue()) {
+        if (name != null) {
             repository.addCityByName(name.trim());
         }
     }

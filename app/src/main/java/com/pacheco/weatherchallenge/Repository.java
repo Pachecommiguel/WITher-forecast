@@ -6,9 +6,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.pacheco.weatherchallenge.retrofit.response.City;
 import com.pacheco.weatherchallenge.retrofit.AppRetrofit;
 import com.pacheco.weatherchallenge.retrofit.Webservice;
+import com.pacheco.weatherchallenge.retrofit.response.City;
 import com.pacheco.weatherchallenge.utils.CityEnum;
 import com.pacheco.weatherchallenge.utils.Constants;
 
@@ -26,10 +26,13 @@ public class Repository {
     private static Repository instance;
     private final Webservice webservice;
     private final MutableLiveData<List<City>> allCities = new MutableLiveData<>();
+    private static final MutableLiveData<Integer> statusCode = new MutableLiveData<>();
 
     private final Callback<City> callback = new Callback<City>() {
         @Override
         public void onResponse(@NotNull Call<City> call, Response<City> response) {
+            statusCode.setValue(response.code());
+
             if (response.isSuccessful()) {
                 handleResponse(response.body());
             }
@@ -52,11 +55,17 @@ public class Repository {
     }
 
     public static Repository getInstance() {
+        statusCode.setValue(Constants.NOT_DEFINED);
+
         if (instance == null) {
             instance = new Repository();
         }
 
         return instance;
+    }
+
+    public MutableLiveData<Integer> getStatusCode() {
+        return statusCode;
     }
 
     public LiveData<List<City>> getAllCities() {

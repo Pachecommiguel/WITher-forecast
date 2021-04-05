@@ -13,6 +13,8 @@ import com.pacheco.weatherchallenge.R;
 import com.pacheco.weatherchallenge.databinding.ActivityAddBinding;
 import com.pacheco.weatherchallenge.viewmodels.AddViewModel;
 
+import java.net.HttpURLConnection;
+
 public class AddActivity extends AppCompatActivity {
 
     private AddViewModel viewModel;
@@ -26,11 +28,17 @@ public class AddActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication())
                 .create(AddViewModel.class);
 
-        viewModel.getStatus().observe(this, status -> {
-            if (status) {
-                finish();
-            } else {
-                Toast.makeText(this, "Fill the name!", Toast.LENGTH_SHORT).show();
+        viewModel.getStatusCode().observe(this, status -> {
+            switch (status) {
+                case HttpURLConnection.HTTP_BAD_REQUEST:
+                    Toast.makeText(this, R.string.fill_name, Toast.LENGTH_SHORT).show();
+                    break;
+                case HttpURLConnection.HTTP_NOT_FOUND:
+                    Toast.makeText(this, R.string.not_found, Toast.LENGTH_SHORT).show();
+                    break;
+                case HttpURLConnection.HTTP_OK:
+                    finish();
+                    break;
             }
         });
 

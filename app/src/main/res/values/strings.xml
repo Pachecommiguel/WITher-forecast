@@ -6,4 +6,6 @@
     <string name="search">Search</string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
+    <string name="not_found">Not found!</string>
+    <string name="fill_name">Fill the name!</string>
 </resources>
