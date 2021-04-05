@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -138,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (!manager.isWifiEnabled()) {
             manager.setWifiEnabled(true);
+            Toast.makeText(this, R.string.wifi, Toast.LENGTH_SHORT).show();
         }
     }
 }
