@@ -34,7 +34,6 @@ public class DetailsActivity extends AppCompatActivity {
 
     public void onDeleteItemClick(MenuItem item) {
         viewModel.onDeleteItemClick();
-        finish();
     }
 
     private void setUpViewModel(ActivityDetailsBinding binding) {
@@ -43,7 +42,9 @@ public class DetailsActivity extends AppCompatActivity {
                 .create(DetailsViewModel.class);
 
         viewModel.getCity().observe(this, city -> {
-            if (city != null) {
+            if (city == null) {
+                finish();
+            } else {
                 getSupportActionBar().setTitle(city.getName());
             }
         });
