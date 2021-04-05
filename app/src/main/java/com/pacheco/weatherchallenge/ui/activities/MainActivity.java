@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         setUpRecyclerView(adapter, binding);
         setUpViewModel(adapter);
+
+        checkWifi();
         checkGps();
     }
 
@@ -127,6 +130,14 @@ public class MainActivity extends AppCompatActivity {
 
             builder.setNegativeButton(R.string.cancel, (dialog, id) -> dialog.cancel());
             builder.create().show();
+        }
+    }
+
+    private void checkWifi() {
+        WifiManager manager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+        if (!manager.isWifiEnabled()) {
+            manager.setWifiEnabled(true);
         }
     }
 }
