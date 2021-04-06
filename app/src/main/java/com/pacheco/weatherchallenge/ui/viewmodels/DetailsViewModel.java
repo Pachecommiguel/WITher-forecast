@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge.viewmodels;
+package com.pacheco.weatherchallenge.ui.viewmodels;
 
 import android.app.Application;
 
@@ -7,7 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.pacheco.weatherchallenge.Repository;
-import com.pacheco.weatherchallenge.models.City;
+import com.pacheco.weatherchallenge.network.models.City;
 
 public class DetailsViewModel extends AndroidViewModel {
 

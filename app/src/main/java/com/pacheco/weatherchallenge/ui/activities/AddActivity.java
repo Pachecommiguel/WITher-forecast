@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.pacheco.weatherchallenge.R;
 import com.pacheco.weatherchallenge.databinding.ActivityAddBinding;
-import com.pacheco.weatherchallenge.viewmodels.AddViewModel;
+import com.pacheco.weatherchallenge.ui.viewmodels.AddViewModel;
 
 import java.net.HttpURLConnection;
 

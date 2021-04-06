@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge.room;
+package com.pacheco.weatherchallenge.db;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -7,7 +7,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.pacheco.weatherchallenge.models.City;
+import com.pacheco.weatherchallenge.network.models.City;
 
 import java.util.List;
 

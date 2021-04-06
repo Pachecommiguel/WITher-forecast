@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge.room;
+package com.pacheco.weatherchallenge.db;
 
 import android.content.Context;
 
@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.pacheco.weatherchallenge.models.City;
+import com.pacheco.weatherchallenge.network.models.City;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

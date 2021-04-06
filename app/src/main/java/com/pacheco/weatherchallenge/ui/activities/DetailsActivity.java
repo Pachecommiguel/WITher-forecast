@@ -6,11 +6,11 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.pacheco.weatherchallenge.AndroidViewModelFactory;
+import com.pacheco.weatherchallenge.ui.AndroidViewModelFactory;
 import com.pacheco.weatherchallenge.R;
 import com.pacheco.weatherchallenge.databinding.ActivityDetailsBinding;
 import com.pacheco.weatherchallenge.utils.Constants;
-import com.pacheco.weatherchallenge.viewmodels.DetailsViewModel;
+import com.pacheco.weatherchallenge.ui.viewmodels.DetailsViewModel;
 
 public class DetailsActivity extends AppCompatActivity {
 

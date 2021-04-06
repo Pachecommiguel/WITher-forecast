@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge.ui;
+package com.pacheco.weatherchallenge.ui.recycler;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.pacheco.weatherchallenge.databinding.RecyclerviewItemBinding;
-import com.pacheco.weatherchallenge.models.City;
+import com.pacheco.weatherchallenge.network.models.City;
+import com.pacheco.weatherchallenge.ui.Clickable;
 
 public class RecyclerListAdapter extends ListAdapter<City, RecyclerViewHolder> {
 

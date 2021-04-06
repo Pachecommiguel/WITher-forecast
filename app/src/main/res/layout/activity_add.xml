@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.pacheco.weatherchallenge.viewmodels.AddViewModel" />
+            type="com.pacheco.weatherchallenge.ui.viewmodels.AddViewModel" />
     </data>
 
     <LinearLayout

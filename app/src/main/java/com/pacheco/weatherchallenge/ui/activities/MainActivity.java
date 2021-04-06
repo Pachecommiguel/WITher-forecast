@@ -20,13 +20,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.location.LocationServices;
-import com.pacheco.weatherchallenge.AndroidViewModelFactory;
+import com.pacheco.weatherchallenge.ui.AndroidViewModelFactory;
 import com.pacheco.weatherchallenge.R;
 import com.pacheco.weatherchallenge.databinding.ActivityMainBinding;
-import com.pacheco.weatherchallenge.ui.DiffCallback;
-import com.pacheco.weatherchallenge.ui.RecyclerListAdapter;
+import com.pacheco.weatherchallenge.ui.recycler.DiffCallback;
+import com.pacheco.weatherchallenge.ui.recycler.RecyclerListAdapter;
 import com.pacheco.weatherchallenge.utils.Constants;
-import com.pacheco.weatherchallenge.viewmodels.MainViewModel;
+import com.pacheco.weatherchallenge.ui.viewmodels.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge.models;
+package com.pacheco.weatherchallenge.network.models;
 
 import androidx.annotation.Nullable;
 import androidx.room.Embedded;

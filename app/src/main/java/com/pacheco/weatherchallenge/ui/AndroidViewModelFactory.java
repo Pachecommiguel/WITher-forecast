@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge;
+package com.pacheco.weatherchallenge.ui;
 
 import android.app.Application;
 
@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.pacheco.weatherchallenge.viewmodels.DetailsViewModel;
-import com.pacheco.weatherchallenge.viewmodels.MainViewModel;
+import com.pacheco.weatherchallenge.ui.viewmodels.DetailsViewModel;
+import com.pacheco.weatherchallenge.ui.viewmodels.MainViewModel;
 
 public class AndroidViewModelFactory extends ViewModelProvider.AndroidViewModelFactory {
 

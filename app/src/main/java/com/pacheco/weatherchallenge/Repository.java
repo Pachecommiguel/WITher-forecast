@@ -7,11 +7,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.pacheco.weatherchallenge.retrofit.AppRetrofit;
-import com.pacheco.weatherchallenge.retrofit.Webservice;
-import com.pacheco.weatherchallenge.models.City;
-import com.pacheco.weatherchallenge.room.AppRoom;
-import com.pacheco.weatherchallenge.room.CityDao;
+import com.pacheco.weatherchallenge.network.retrofit.AppRetrofit;
+import com.pacheco.weatherchallenge.network.retrofit.Webservice;
+import com.pacheco.weatherchallenge.network.models.City;
+import com.pacheco.weatherchallenge.db.AppRoom;
+import com.pacheco.weatherchallenge.db.CityDao;
 import com.pacheco.weatherchallenge.utils.Constants;
 
 import org.jetbrains.annotations.NotNull;
