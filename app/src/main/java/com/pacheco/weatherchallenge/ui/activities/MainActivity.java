@@ -91,18 +91,13 @@ public class MainActivity extends AppCompatActivity {
             viewModel.onPermissionsGranted();
         } else {
             ActivityCompat.requestPermissions(this, new String[]{
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION}, Constants.LOCAL_REQUEST_CODE);
+                    Manifest.permission.ACCESS_FINE_LOCATION}, Constants.LOCAL_REQUEST_CODE);
         }
     }
 
     private boolean isPermissionsGiven() {
-        boolean isFineGranted = ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-        boolean isCoarseGranted = ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-
-        return isFineGranted && isCoarseGranted;
+        return ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 
     private void setUpRecyclerView(RecyclerListAdapter adapter, ActivityMainBinding binding) {
