@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge.network.models;
+package com.pacheco.weatherchallenge.db.entities;
 
 public class Main {
 

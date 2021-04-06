@@ -7,7 +7,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.pacheco.weatherchallenge.network.models.City;
+import com.pacheco.weatherchallenge.db.entities.City;
 
 import java.util.List;
 

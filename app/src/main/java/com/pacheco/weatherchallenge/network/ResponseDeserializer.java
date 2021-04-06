@@ -1,14 +1,14 @@
-package com.pacheco.weatherchallenge.network.retrofit;
+package com.pacheco.weatherchallenge.network;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.pacheco.weatherchallenge.network.models.City;
-import com.pacheco.weatherchallenge.network.models.Clouds;
-import com.pacheco.weatherchallenge.network.models.Main;
-import com.pacheco.weatherchallenge.network.models.Wind;
+import com.pacheco.weatherchallenge.db.entities.City;
+import com.pacheco.weatherchallenge.db.entities.Clouds;
+import com.pacheco.weatherchallenge.db.entities.Main;
+import com.pacheco.weatherchallenge.db.entities.Wind;
 
 import java.lang.reflect.Type;
 

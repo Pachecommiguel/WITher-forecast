@@ -1,7 +1,7 @@
-package com.pacheco.weatherchallenge.network.retrofit;
+package com.pacheco.weatherchallenge.network;
 
 import com.google.gson.GsonBuilder;
-import com.pacheco.weatherchallenge.network.models.City;
+import com.pacheco.weatherchallenge.db.entities.City;
 import com.pacheco.weatherchallenge.utils.Constants;
 
 import retrofit2.Converter;

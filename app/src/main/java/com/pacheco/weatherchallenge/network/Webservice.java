@@ -1,6 +1,6 @@
-package com.pacheco.weatherchallenge.network.retrofit;
+package com.pacheco.weatherchallenge.network;
 
-import com.pacheco.weatherchallenge.network.models.City;
+import com.pacheco.weatherchallenge.db.entities.City;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

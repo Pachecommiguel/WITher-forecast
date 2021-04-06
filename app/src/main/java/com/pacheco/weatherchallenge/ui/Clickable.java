@@ -1,6 +1,6 @@
 package com.pacheco.weatherchallenge.ui;
 
-import com.pacheco.weatherchallenge.network.models.City;
+import com.pacheco.weatherchallenge.db.entities.City;
 
 public interface Clickable {
 

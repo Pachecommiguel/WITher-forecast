@@ -3,7 +3,7 @@ package com.pacheco.weatherchallenge.ui.recycler;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.pacheco.weatherchallenge.network.models.City;
+import com.pacheco.weatherchallenge.db.entities.City;
 
 public class DiffCallback extends DiffUtil.ItemCallback<City> {
 

@@ -7,7 +7,7 @@
     <data>
         <variable
             name="city"
-            type="com.pacheco.weatherchallenge.network.models.City" />
+            type="com.pacheco.weatherchallenge.db.entities.City" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
