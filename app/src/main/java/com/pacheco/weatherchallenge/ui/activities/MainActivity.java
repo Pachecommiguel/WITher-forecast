@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,8 +19,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.location.LocationServices;
-import com.pacheco.weatherchallenge.R;
 import com.pacheco.weatherchallenge.AndroidViewModelFactory;
+import com.pacheco.weatherchallenge.R;
 import com.pacheco.weatherchallenge.databinding.ActivityMainBinding;
 import com.pacheco.weatherchallenge.ui.DiffCallback;
 import com.pacheco.weatherchallenge.ui.RecyclerListAdapter;
@@ -78,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onRefreshItemClick(MenuItem item) {
-        checkGps();
         viewModel.onRefreshItemClick();
     }
 
@@ -139,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (!manager.isWifiEnabled()) {
             manager.setWifiEnabled(true);
-            Toast.makeText(this, R.string.wifi, Toast.LENGTH_SHORT).show();
         }
     }
 }

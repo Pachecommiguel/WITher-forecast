@@ -42,6 +42,7 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void onRefreshItemClick() {
+        getLastLocation();
         repository.refreshAllCities();
     }
 
