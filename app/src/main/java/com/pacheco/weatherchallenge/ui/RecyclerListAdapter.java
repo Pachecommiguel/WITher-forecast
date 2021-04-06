@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.pacheco.weatherchallenge.databinding.RecyclerviewItemBinding;
-import com.pacheco.weatherchallenge.retrofit.response.City;
+import com.pacheco.weatherchallenge.models.City;
 
 public class RecyclerListAdapter extends ListAdapter<City, RecyclerViewHolder> {
 

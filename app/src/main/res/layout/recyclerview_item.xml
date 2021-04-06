@@ -7,7 +7,7 @@
     <data>
         <variable
             name="city"
-            type="com.pacheco.weatherchallenge.retrofit.response.City" />
+            type="com.pacheco.weatherchallenge.models.City" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.pacheco.weatherchallenge.Repository;
-import com.pacheco.weatherchallenge.retrofit.response.City;
+import com.pacheco.weatherchallenge.models.City;
 import com.pacheco.weatherchallenge.utils.Constants;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class MainViewModel extends AndroidViewModel {
     public MainViewModel(@NonNull Application application, FusedLocationProviderClient client) {
         super(application);
         this.client = client;
-        repository = Repository.getInstance();
+        repository = Repository.getInstance(application);
         allCities = repository.getAllCities();
     }
 

@@ -1,13 +1,10 @@
-package com.pacheco.weatherchallenge.retrofit.response;
-
-import androidx.room.Ignore;
+package com.pacheco.weatherchallenge.models;
 
 public class Wind {
 
     private double speed;
     private int deg;
 
-    @Ignore
     public Wind(double speed, int deg) {
         this.speed = speed;
         this.deg = deg;

@@ -1,6 +1,6 @@
 package com.pacheco.weatherchallenge.ui;
 
-import com.pacheco.weatherchallenge.retrofit.response.City;
+import com.pacheco.weatherchallenge.models.City;
 
 public interface Clickable {
 

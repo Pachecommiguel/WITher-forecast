@@ -7,7 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.pacheco.weatherchallenge.Repository;
-import com.pacheco.weatherchallenge.retrofit.response.City;
+import com.pacheco.weatherchallenge.models.City;
 
 public class DetailsViewModel extends AndroidViewModel {
 
@@ -16,7 +16,7 @@ public class DetailsViewModel extends AndroidViewModel {
 
     public DetailsViewModel(@NonNull Application application, int id) {
         super(application);
-        repository = Repository.getInstance();
+        repository = Repository.getInstance(application);
         city = repository.getCityById(id);
     }
 

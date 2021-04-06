@@ -1,6 +1,4 @@
-package com.pacheco.weatherchallenge.retrofit.response;
-
-import androidx.room.Ignore;
+package com.pacheco.weatherchallenge.models;
 
 public class Main {
 
@@ -8,15 +6,10 @@ public class Main {
     private int pressure;
     private int humidity;
 
-    @Ignore
     public Main(double temp, int pressure, int humidity) {
         this.temp = temp;
         this.pressure = pressure;
         this.humidity = humidity;
-    }
-
-    @Ignore
-    public Main() {
     }
 
     public double getTemp() {

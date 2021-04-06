@@ -5,7 +5,10 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.pacheco.weatherchallenge.retrofit.response.City;
+import com.pacheco.weatherchallenge.models.City;
+import com.pacheco.weatherchallenge.models.Clouds;
+import com.pacheco.weatherchallenge.models.Main;
+import com.pacheco.weatherchallenge.models.Wind;
 
 import java.lang.reflect.Type;
 
@@ -29,6 +32,6 @@ public class ResponseDeserializer  implements JsonDeserializer<City> {
         int id = jsonObject.get("id").getAsInt();
         String name = jsonObject.get("name").getAsString();
 
-        return new City(id, name, temp, pressure, humidity, speed, deg, clouds);
+        return new City(id, new Main(temp, pressure, humidity), new Wind(speed, deg), new Clouds(clouds), name);
     }
 }

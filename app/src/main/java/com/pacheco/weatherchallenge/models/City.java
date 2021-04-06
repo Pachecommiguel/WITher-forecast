@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge.retrofit.response;
+package com.pacheco.weatherchallenge.models;
 
 import androidx.annotation.Nullable;
 import androidx.room.Embedded;
@@ -23,22 +23,17 @@ public class City {
 
     private String name;
 
-    @Embedded
-    private Coord coord;
-
-    @Ignore
-    public City(int id, String name, double mainTemp, int mainPressure, int mainHumidity,
-                double windSpeed, int windDeg, int cloudsAll) {
-        this.name = name;
+    public City(int id, Main main, Wind wind, Clouds clouds, String name) {
         this.id = id;
-        main = new Main(mainTemp, mainPressure, mainHumidity);
-        wind = new Wind(windSpeed, windDeg);
-        clouds = new Clouds(cloudsAll);
+        this.main = main;
+        this.wind = wind;
+        this.clouds = clouds;
+        this.name = name;
     }
 
     @Ignore
     public City() {
-        coord = new Coord();
+
     }
 
     public int getId() {
@@ -79,14 +74,6 @@ public class City {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Coord getCoord() {
-        return coord;
-    }
-
-    public void setCoord(Coord coord) {
-        this.coord = coord;
     }
 
     @Override

@@ -1,12 +1,9 @@
-package com.pacheco.weatherchallenge.retrofit.response;
-
-import androidx.room.Ignore;
+package com.pacheco.weatherchallenge.models;
 
 public class Clouds {
 
     private int all;
 
-    @Ignore
     public Clouds(int all) {
         this.all = all;
     }

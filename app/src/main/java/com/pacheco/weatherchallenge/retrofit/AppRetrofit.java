@@ -1,7 +1,7 @@
 package com.pacheco.weatherchallenge.retrofit;
 
 import com.google.gson.GsonBuilder;
-import com.pacheco.weatherchallenge.retrofit.response.City;
+import com.pacheco.weatherchallenge.models.City;
 import com.pacheco.weatherchallenge.utils.Constants;
 
 import retrofit2.Converter;
@@ -13,7 +13,6 @@ public abstract class AppRetrofit {
     private static Retrofit instance;
 
     public static Retrofit getInstance() {
-
         if (instance == null) {
             instance = new Retrofit.Builder()
                     .baseUrl(Constants.BASE_URL)
