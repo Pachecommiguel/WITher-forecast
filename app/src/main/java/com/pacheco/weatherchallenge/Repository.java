@@ -1,5 +1,6 @@
 package com.pacheco.weatherchallenge;
 
+import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -9,6 +10,8 @@ import androidx.lifecycle.Transformations;
 import com.pacheco.weatherchallenge.retrofit.AppRetrofit;
 import com.pacheco.weatherchallenge.retrofit.Webservice;
 import com.pacheco.weatherchallenge.retrofit.response.City;
+import com.pacheco.weatherchallenge.room.AppRoom;
+import com.pacheco.weatherchallenge.room.CityDao;
 import com.pacheco.weatherchallenge.utils.CityEnum;
 import com.pacheco.weatherchallenge.utils.Constants;
 
@@ -25,6 +28,7 @@ public class Repository {
 
     private static Repository instance;
     private final Webservice webservice;
+    private final CityDao cityDao;
     private final MutableLiveData<List<City>> allCities = new MutableLiveData<>();
     private static final MutableLiveData<Integer> statusCode = new MutableLiveData<>();
 
@@ -44,9 +48,10 @@ public class Repository {
         }
     };
 
-    private Repository() {
+    private Repository(Application application) {
         webservice = AppRetrofit.getInstance().create(Webservice.class);
         allCities.setValue(new ArrayList<>());
+        cityDao = AppRoom.getInstance(application.getApplicationContext()).cityDao();
 
         for (CityEnum city : CityEnum.values()) {
             webservice.getWeatherByCityId(city.getId(), BuildConfig.API_KEY, Constants.METRIC)
@@ -54,11 +59,11 @@ public class Repository {
         }
     }
 
-    public static Repository getInstance() {
+    public static Repository getInstance(Application application) {
         statusCode.setValue(Constants.NOT_DEFINED);
 
         if (instance == null) {
-            instance = new Repository();
+            instance = new Repository(application);
         }
 
         return instance;

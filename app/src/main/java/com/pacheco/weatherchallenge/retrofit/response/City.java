@@ -1,16 +1,32 @@
 package com.pacheco.weatherchallenge.retrofit.response;
 
 import androidx.annotation.Nullable;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "city_table")
 public class City {
 
+    @PrimaryKey
     private int id;
+
+    @Embedded
     private Main main;
+
+    @Embedded
     private Wind wind;
+
+    @Embedded
     private Clouds clouds;
+
     private String name;
+
+    @Embedded
     private Coord coord;
 
+    @Ignore
     public City(int id, String name, double mainTemp, int mainPressure, int mainHumidity,
                 double windSpeed, int windDeg, int cloudsAll) {
         this.name = name;
@@ -20,12 +36,7 @@ public class City {
         clouds = new Clouds(cloudsAll);
     }
 
-    public City(int id, String name) {
-        this.id = id;
-        this.name = name;
-        main = new Main();
-    }
-
+    @Ignore
     public City() {
         coord = new Coord();
     }
@@ -34,16 +45,32 @@ public class City {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Main getMain() {
         return main;
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
     }
 
     public Wind getWind() {
         return wind;
     }
 
+    public void setWind(Wind wind) {
+        this.wind = wind;
+    }
+
     public Clouds getClouds() {
         return clouds;
+    }
+
+    public void setClouds(Clouds clouds) {
+        this.clouds = clouds;
     }
 
     public String getName() {
@@ -56,6 +83,10 @@ public class City {
 
     public Coord getCoord() {
         return coord;
+    }
+
+    public void setCoord(Coord coord) {
+        this.coord = coord;
     }
 
     @Override
