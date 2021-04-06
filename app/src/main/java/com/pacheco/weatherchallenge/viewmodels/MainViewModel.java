@@ -49,7 +49,7 @@ public class MainViewModel extends AndroidViewModel {
 
     public void onFirstTimeLaunch() {
         for (CityEnum city : CityEnum.values()) {
-            repository.getCityById(city.getId());
+            repository.addCityById(city.getId());
         }
     }
 

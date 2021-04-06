@@ -30,7 +30,7 @@ public class AddViewModel extends AndroidViewModel {
         String name = city.getValue().getName();
 
         if (name != null) {
-            repository.getCityByName(name.trim());
+            repository.addCityByName(name.trim());
         }
     }
 }
