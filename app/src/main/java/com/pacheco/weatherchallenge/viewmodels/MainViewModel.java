@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.pacheco.weatherchallenge.Repository;
 import com.pacheco.weatherchallenge.models.City;
+import com.pacheco.weatherchallenge.utils.CityEnum;
 import com.pacheco.weatherchallenge.utils.Constants;
 
 import java.util.List;
@@ -44,6 +45,12 @@ public class MainViewModel extends AndroidViewModel {
     public void onRefreshItemClick() {
         getLastLocation();
         repository.refreshAllCities();
+    }
+
+    public void onFirstTimeLaunch() {
+        for (CityEnum city : CityEnum.values()) {
+            repository.getCityById(city.getId());
+        }
     }
 
     private void getLastLocation() {

@@ -96,7 +96,11 @@ public class Repository {
         AppRoom.EXECUTOR_SERVICE.execute(() -> cityDao.delete(city));
     }
 
-    public void addCityByName(String name) {
+    public void getCityByName(String name) {
         webservice.getWeatherByCityName(name, BuildConfig.API_KEY, Constants.METRIC).enqueue(callback);
+    }
+
+    public void getCityById(String id) {
+        webservice.getWeatherByCityId(id, BuildConfig.API_KEY, Constants.METRIC).enqueue(callback);
     }
 }

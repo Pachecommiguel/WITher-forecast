@@ -22,8 +22,8 @@ public abstract class AppRoom extends RoomDatabase {
     public static AppRoom getInstance(final Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context, AppRoom.class,"city_database")
-            .fallbackToDestructiveMigration()
-            .build();
+                    .fallbackToDestructiveMigration()
+                    .build();
         }
 
         return instance;

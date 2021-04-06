@@ -3,6 +3,7 @@ package com.pacheco.weatherchallenge.ui.activities;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.net.wifi.WifiManager;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         checkWifi();
         checkGps();
+        checkFirstTimeLaunch();
     }
 
     @Override
@@ -137,6 +139,15 @@ public class MainActivity extends AppCompatActivity {
 
         if (!manager.isWifiEnabled()) {
             manager.setWifiEnabled(true);
+        }
+    }
+
+    private void checkFirstTimeLaunch() {
+        SharedPreferences preferences = getSharedPreferences("com.pacheco.weatherchallenge", MODE_PRIVATE);
+
+        if (preferences.getBoolean(Constants.FIRST_RUN, true)) {
+            viewModel.onFirstTimeLaunch();
+            preferences.edit().putBoolean(Constants.FIRST_RUN, false).apply();
         }
     }
 }
