@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge.network;
+package com.pacheco.weatherchallenge.network.retrofit;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

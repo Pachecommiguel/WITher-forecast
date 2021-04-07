@@ -1,4 +1,4 @@
-package com.pacheco.weatherchallenge.network;
+package com.pacheco.weatherchallenge.network.retrofit;
 
 import com.pacheco.weatherchallenge.db.entities.City;
 
