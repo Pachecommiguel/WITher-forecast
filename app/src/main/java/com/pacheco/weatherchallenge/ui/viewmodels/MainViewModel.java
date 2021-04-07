@@ -31,7 +31,7 @@ public class MainViewModel extends AndroidViewModel implements LocationListener 
         super(application);
         repository = Repository.getInstance(application);
         allCities = repository.getAllCities();
-        gpsManager = new GpsManager(getApplication().getApplicationContext(), client);
+        gpsManager = new GpsManager(getApplication().getApplicationContext(), client, this);
 
         if (AppUtil.isFirstTimeLaunch(application.getApplicationContext())) {
             populateDb();
@@ -76,20 +76,18 @@ public class MainViewModel extends AndroidViewModel implements LocationListener 
     }
 
     private void setUpGps() {
-        boolean isProviderEnabled = gpsManager.isProviderEnabled();
-        gpsStatus.setValue(!isProviderEnabled);
-
-        if (isProviderEnabled) {
+        if (gpsManager.isProviderEnabled()) {
             checkPermissions();
+        } else {
+            gpsStatus.setValue(true);
         }
     }
 
     private void checkPermissions() {
-        boolean isPermissionsGiven = gpsManager.isPermissionsGiven();
-        permissionStatus.setValue(!isPermissionsGiven);
-
-        if (isPermissionsGiven) {
+        if (gpsManager.isPermissionsGiven()) {
             gpsManager.getLastLocation();
+        } else {
+            permissionStatus.setValue(true);
         }
     }
 

@@ -82,27 +82,28 @@ public class MainActivity extends AppCompatActivity {
                 .create(MainViewModel.class);
 
         viewModel.getAllCities().observe(this, adapter::submitList);
-        viewModel.getGpsStatus().observe(this, this::showAlertDialog);
+        viewModel.getGpsStatus().observe(this, this::requestGps);
         viewModel.getPermissionStatus().observe(this, this::requestPermissions);
     }
 
     private void requestPermissions(Boolean status) {
         if (status) {
+            viewModel.getPermissionStatus().setValue(false);
             ActivityCompat.requestPermissions(this, new String[]{
                     Manifest.permission.ACCESS_FINE_LOCATION}, Constants.LOCAL_REQUEST_CODE);
         }
     }
 
-    private void showAlertDialog(Boolean status) {
+    private void requestGps(Boolean status) {
         if (status) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            viewModel.getGpsStatus().setValue(false);
 
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(R.string.gps_disabled)
                     .setCancelable(false)
                     .setPositiveButton(R.string.yes, (dialog, id) -> startActivityForResult(
                             new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS),
                             Constants.GPS_REQUEST_CODE));
-
             builder.setNegativeButton(R.string.cancel, (dialog, id) -> dialog.cancel());
             builder.create().show();
         }

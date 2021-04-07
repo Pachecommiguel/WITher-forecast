@@ -16,11 +16,13 @@ public class GpsManager {
     private final FusedLocationProviderClient providerClient;
     private final Context context;
     private final LocationManager locationManager;
-    private LocationListener listener;
+    private final LocationListener listener;
 
-    public GpsManager(Context context, FusedLocationProviderClient providerClient) {
+    public GpsManager(Context context, FusedLocationProviderClient providerClient,
+                      LocationListener listener) {
         this.context = context;
         this.providerClient = providerClient;
+        this.listener = listener;
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
     }
 
