@@ -1,12 +1,7 @@
 package com.pacheco.weatherchallenge.ui.activities;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.location.LocationManager;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
@@ -20,24 +15,22 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.location.LocationServices;
-import com.pacheco.weatherchallenge.ui.AndroidViewModelFactory;
 import com.pacheco.weatherchallenge.R;
 import com.pacheco.weatherchallenge.databinding.ActivityMainBinding;
+import com.pacheco.weatherchallenge.ui.AndroidViewModelFactory;
 import com.pacheco.weatherchallenge.ui.recycler.DiffCallback;
 import com.pacheco.weatherchallenge.ui.recycler.RecyclerListAdapter;
-import com.pacheco.weatherchallenge.utils.Constants;
 import com.pacheco.weatherchallenge.ui.viewmodels.MainViewModel;
+import com.pacheco.weatherchallenge.utils.Constants;
 
 public class MainActivity extends AppCompatActivity {
 
     private MainViewModel viewModel;
-    private LocationManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         RecyclerListAdapter adapter = new RecyclerListAdapter(new DiffCallback(), response ->
                 startActivity(new Intent(this, DetailsActivity.class)
@@ -48,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
         setUpRecyclerView(adapter, binding);
         setUpViewModel(adapter);
-
-        checkWifi();
-        checkGps();
-        checkFirstTimeLaunch();
     }
 
     @Override
@@ -71,11 +60,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if ((requestCode == Constants.GPS_REQUEST_CODE) && (resultCode == Constants.RESULT_OK) &&
-                (manager.isProviderEnabled(LocationManager.GPS_PROVIDER))) {
-            checkPermissions();
-        }
+        viewModel.onActivityResult(requestCode, resultCode);;
     }
 
     public void onRefreshItemClick(MenuItem item) {
@@ -84,20 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onAddItemClick(MenuItem item) {
         startActivity(new Intent(this, AddActivity.class));
-    }
-
-    private void checkPermissions() {
-        if (isPermissionsGiven()) {
-            viewModel.onPermissionsGranted();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{
-                    Manifest.permission.ACCESS_FINE_LOCATION}, Constants.LOCAL_REQUEST_CODE);
-        }
-    }
-
-    private boolean isPermissionsGiven() {
-        return ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 
     private void setUpRecyclerView(RecyclerListAdapter adapter, ActivityMainBinding binding) {
@@ -109,13 +80,21 @@ public class MainActivity extends AppCompatActivity {
         viewModel = new AndroidViewModelFactory(getApplication(),
                 LocationServices.getFusedLocationProviderClient(this))
                 .create(MainViewModel.class);
+
         viewModel.getAllCities().observe(this, adapter::submitList);
+        viewModel.getGpsStatus().observe(this, this::showAlertDialog);
+        viewModel.getPermissionStatus().observe(this, this::requestPermissions);
     }
 
-    private void checkGps() {
-        if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            checkPermissions();
-        } else {
+    private void requestPermissions(Boolean status) {
+        if (status) {
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION}, Constants.LOCAL_REQUEST_CODE);
+        }
+    }
+
+    private void showAlertDialog(Boolean status) {
+        if (status) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             builder.setMessage(R.string.gps_disabled)
@@ -126,23 +105,6 @@ public class MainActivity extends AppCompatActivity {
 
             builder.setNegativeButton(R.string.cancel, (dialog, id) -> dialog.cancel());
             builder.create().show();
-        }
-    }
-
-    private void checkWifi() {
-        WifiManager manager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-
-        if (!manager.isWifiEnabled()) {
-            manager.setWifiEnabled(true);
-        }
-    }
-
-    private void checkFirstTimeLaunch() {
-        SharedPreferences preferences = getSharedPreferences("com.pacheco.weatherchallenge", MODE_PRIVATE);
-
-        if (preferences.getBoolean(Constants.FIRST_RUN, true)) {
-            viewModel.onFirstTimeLaunch();
-            preferences.edit().putBoolean(Constants.FIRST_RUN, false).apply();
         }
     }
 }
