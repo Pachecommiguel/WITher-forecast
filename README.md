@@ -1,5 +1,4 @@
 # WITher-forecast
-WIP
 Android Challenge MVVM with Retrofit && Room
 
 How to build an run the app:
